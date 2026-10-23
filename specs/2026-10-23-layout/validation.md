@@ -18,7 +18,7 @@ The feature is complete and mergeable when every item passes.
 ## Browser check
 - [x] The home page shows the header, nav, footer, and styling in a modern browser.
 - [ ] ~~Narrowing the window to phone width keeps the layout usable, with no horizontal scroll.~~ Deferred to phase 10 (polish).
-- [ ] Switching the OS between light and dark mode changes the theme.
+- [x] Switching the OS between light and dark mode changes the theme. (Firefox "Website appearance" must be set to Automatic/System.)
 
 ## Navigation
 - [x] Every nav link loads a page (no 404s).
