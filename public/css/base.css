@@ -1,0 +1,24 @@
+/* Base: reset, page structure, and shared elements. */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+main { flex: 1; padding-top: 2rem; padding-bottom: 2rem; }
+
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
