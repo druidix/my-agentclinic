@@ -3,7 +3,7 @@
 Very small phases, each leaving the app runnable.
 
 1. **Server skeleton (done):** install Express, serve "Hello AgentClinic" from `src/index.ts`, add a `start` script.
-2. **Layout:** shared EJS layout, stylesheet, and navigation.
+2. **Layout (done):** shared EJS layout, stylesheet, and navigation.
 3. **Dashboard shell:** a staff dashboard page with placeholder panels.
 4. **Agents:** list agents (in-memory seed data).
 5. **Ailments:** list ailments and show which agents have them.
