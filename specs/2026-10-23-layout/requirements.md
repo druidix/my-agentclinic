@@ -5,12 +5,13 @@ In scope:
 - A shared EJS layout used by every page.
 - Header with the brand name and nav links: Home, Dashboard, Agents, Ailments, Therapies, Appointments.
 - Footer with the project name and the mission tagline.
-- A stylesheet in `public/`: modern, responsive, with automatic light and dark themes via `prefers-color-scheme`.
+- A stylesheet in `public/`: modern, with automatic light and dark themes via `prefers-color-scheme`.
 - Placeholder pages for sections that don't exist yet, so no nav link is broken.
 - Active nav link highlighting.
 
 Out of scope (later phases):
 - Real dashboard, agent, ailment, therapy, or appointment content (phases 3 to 8).
+- Responsive and mobile layout (deferred to phase 10, polish).
 - HTMX and client-side JavaScript.
 - Data and SQLite.
 - Automated tests.
