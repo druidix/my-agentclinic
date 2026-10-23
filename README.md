@@ -1,4 +1,4 @@
-# AgentClinic
+# AgentClinic - An SDD tutorial
 
 ## Input from stakeholders
 
