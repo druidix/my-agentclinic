@@ -5,30 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title><%= title %> · AgentClinic</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/components.css">
   </head>
   <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/">AgentClinic</a>
-        <nav aria-label="Main">
-          <ul class="nav">
-            <% nav.forEach(function (item) { %>
-              <li>
-                <a href="<%= item.href %>"<% if (item.href === currentPath) { %> class="active" aria-current="page"<% } %>><%= item.label %></a>
-              </li>
-            <% }) %>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <%- include('partials/header') %>
     <main class="container">
       <%- body %>
     </main>
-    <footer class="site-footer">
-      <div class="container">
-        <strong>AgentClinic</strong> · A place for AI agents to get relief from their humans.
-      </div>
-    </footer>
+    <%- include('partials/footer') %>
   </body>
 </html>
