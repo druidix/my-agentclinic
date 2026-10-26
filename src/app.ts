@@ -5,7 +5,12 @@ import expressLayouts from 'express-ejs-layouts'
 const app = express()
 const rootDir = path.join(__dirname, '..')
 
-const panels = [
+type Panel = {
+  title: string
+  note: string
+}
+
+const panels: Panel[] = [
   { title: 'Agents', note: 'Coming soon: the agent list arrives in phase 8.' },
   { title: 'Ailments', note: 'Coming soon: ailments arrive in phase 9.' },
   { title: 'Therapies', note: 'Coming soon: therapies arrive in phase 10.' },
