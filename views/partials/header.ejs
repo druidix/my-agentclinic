@@ -1,14 +1,14 @@
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="/">AgentClinic</a>
-    <nav aria-label="Main">
-      <ul class="nav">
-        <% nav.forEach(function (item) { %>
-          <li>
-            <a href="<%= item.href %>"<% if (item.href === currentPath) { %> class="active" aria-current="page"<% } %>><%= item.label %></a>
-          </li>
-        <% }) %>
-      </ul>
-    </nav>
-  </div>
+<header class="container">
+  <nav aria-label="Main">
+    <ul>
+      <li><a class="brand" href="/"><strong>AgentClinic</strong></a></li>
+    </ul>
+    <ul class="nav-links">
+      <% nav.forEach(function (item) { %>
+        <li>
+          <a href="<%= item.href %>"<% if (item.href === currentPath) { %> aria-current="page"<% } %>><%= item.label %></a>
+        </li>
+      <% }) %>
+    </ul>
+  </nav>
 </header>
