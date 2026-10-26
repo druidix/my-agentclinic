@@ -31,6 +31,7 @@ app.set('views', path.join(rootDir, 'views'))
 app.set('layout', 'layout')
 app.use(expressLayouts)
 app.use(express.static(path.join(rootDir, 'public')))
+app.use('/vendor/pico', express.static(path.join(rootDir, 'node_modules', '@picocss', 'pico', 'css')))
 
 app.use((req, res, next) => {
   res.locals.nav = nav
