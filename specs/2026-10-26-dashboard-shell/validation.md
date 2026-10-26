@@ -14,9 +14,9 @@ The feature is complete and mergeable when every item passes.
 - [x] The Dashboard nav link is highlighted as active.
 
 ## Themes
-- [ ] Panels are readable and look right in both light and dark themes.
+- [x] Panels are readable and look right in both light and dark themes.
 
 ## Merge readiness
-- [ ] `specs/roadmap.md` shows the dashboard shell as phase 6, marked done.
-- [ ] No `dist/` or `node_modules/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] `specs/roadmap.md` shows the dashboard shell as phase 6, marked done.
+- [x] No `dist/` or `node_modules/` committed.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.
