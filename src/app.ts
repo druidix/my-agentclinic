@@ -6,10 +6,10 @@ const app = express()
 const rootDir = path.join(__dirname, '..')
 
 const panels = [
-  { title: 'Agents', note: 'Coming soon: the agent list arrives in phase 7.' },
-  { title: 'Ailments', note: 'Coming soon: ailments arrive in phase 8.' },
-  { title: 'Therapies', note: 'Coming soon: therapies arrive in phase 9.' },
-  { title: 'Appointments', note: 'Coming soon: scheduled appointments arrive in phase 10.' },
+  { title: 'Agents', note: 'Coming soon: the agent list arrives in phase 8.' },
+  { title: 'Ailments', note: 'Coming soon: ailments arrive in phase 9.' },
+  { title: 'Therapies', note: 'Coming soon: therapies arrive in phase 10.' },
+  { title: 'Appointments', note: 'Coming soon: scheduled appointments arrive in phase 11.' },
 ]
 
 const nav = [

@@ -22,3 +22,7 @@
 
 - `tsc` for builds (already configured).
 - Pico CSS as the CSS framework: classless, semantic-HTML-first styling with built-in light and dark themes and responsive defaults. Small custom stylesheets add only what Pico does not cover.
+
+## Conventions
+
+- Define component and template props as a standalone, named TypeScript type (or interface). Do not write prop definitions inline.
