@@ -1,4 +1,4 @@
-/* Page content components: hero and buttons. */
+/* Page content components: hero, buttons, and dashboard panels. */
 .hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 0.5rem; }
 .lead { font-size: 1.15rem; color: var(--muted); }
 
@@ -10,6 +10,29 @@
   color: var(--accent-text);
   font-weight: 600;
   text-decoration: none;
+}
+
+/* Dashboard panels: one column by default, more as space allows. */
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.panel {
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+.panel h2 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.panel p { margin: 0; color: var(--muted); }
+
+@media (min-width: 40.01rem) {
+  .panel-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 64rem) {
+  .panel-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 /* Responsive: touch-sized buttons on small screens. */

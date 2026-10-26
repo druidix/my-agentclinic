@@ -3,8 +3,8 @@
 The feature is complete and mergeable when every item passes.
 
 ## Automated
-- [ ] `npm test` passes, including the new dashboard route, panel, active-link, and stylesheet tests.
-- [ ] `npm run build` completes with no TypeScript errors.
+- [x] `npm test` passes, including the new dashboard route, panel, active-link, and stylesheet tests.
+- [x] `npm run build` completes with no TypeScript errors.
 - [ ] The `build-and-test` CI check passes on the PR.
 
 ## Browser, at about 375px, 768px, and 1280px

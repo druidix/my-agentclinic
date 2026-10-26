@@ -1,0 +1,13 @@
+<section class="hero">
+  <h1><%= title %></h1>
+  <p class="lead">Staff overview of agents, ailments, therapies, and appointments.</p>
+</section>
+
+<div class="panel-grid">
+  <% panels.forEach(function (panel) { %>
+  <section class="panel">
+    <h2><%= panel.title %></h2>
+    <p><%= panel.note %></p>
+  </section>
+  <% }) %>
+</div>

@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest'
 import app from '../src/app'
 
 const placeholders = [
-  { path: '/dashboard', title: 'Dashboard' },
   { path: '/agents', title: 'Agents' },
   { path: '/ailments', title: 'Ailments' },
   { path: '/therapies', title: 'Therapies' },
@@ -42,6 +41,28 @@ describe('placeholder routes', () => {
   })
 })
 
+describe('GET /dashboard', () => {
+  it('renders the dashboard heading', async () => {
+    const res = await request(app).get('/dashboard')
+
+    expect(res.status).toBe(200)
+    expect(res.text).toContain('<h1>Dashboard</h1>')
+  })
+
+  it.each(['Agents', 'Ailments', 'Therapies', 'Appointments'])('has a %s panel with a coming-soon note', async (name) => {
+    const res = await request(app).get('/dashboard')
+
+    expect(res.text).toMatch(new RegExp(`<section class="panel">\\s*<h2>${name}</h2>\\s*<p>Coming soon`))
+  })
+
+  it('serves the panel styles', async () => {
+    const res = await request(app).get('/css/components.css')
+
+    expect(res.text).toContain('.panel-grid')
+    expect(res.text).toContain('.panel')
+  })
+})
+
 describe('unknown paths', () => {
   it('returns 404', async () => {
     const res = await request(app).get('/nope')
@@ -53,7 +74,7 @@ describe('unknown paths', () => {
 describe('navigation', () => {
   const activeLinks = (html: string) => html.match(/class="active"/g) ?? []
 
-  it.each([{ path: '/', label: 'Home' }, ...placeholders.map((p) => ({ path: p.path, label: p.title }))])(
+  it.each([{ path: '/', label: 'Home' }, { path: '/dashboard', label: 'Dashboard' }, ...placeholders.map((p) => ({ path: p.path, label: p.title }))])(
     'marks only $label as active on $path',
     async ({ path, label }) => {
       const res = await request(app).get(path)
