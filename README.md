@@ -1,5 +1,7 @@
 # AgentClinic - An SDD tutorial
 
+[![CI](https://github.com/druidix/my-agentclinic/actions/workflows/ci.yml/badge.svg)](https://github.com/druidix/my-agentclinic/actions/workflows/ci.yml)
+
 ## Input from stakeholders
 
 - Mary in engineering wants a reliable site with a popular stack based on TypeScript, giving agents and staff a dashboard for easy access.
