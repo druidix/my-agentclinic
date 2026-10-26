@@ -28,7 +28,7 @@ describe('GET /health', () => {
     const res = await request(app).get('/health')
 
     expect(res.status).toBe(200)
-    expect(res.body).toEqual({ status: 'deliberately-wrong' })
+    expect(res.body).toEqual({ status: 'ok' })
   })
 })
 
