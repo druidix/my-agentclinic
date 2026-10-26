@@ -63,3 +63,35 @@ describe('navigation', () => {
     },
   )
 })
+
+describe('responsive design', () => {
+  const pages = ['/', ...placeholders.map((p) => p.path)]
+  const stylesheets = ['tokens', 'base', 'header', 'footer', 'components']
+
+  it.each(pages)('%s has the viewport meta tag', async (path) => {
+    const res = await request(app).get(path)
+
+    expect(res.text).toContain('<meta name="viewport" content="width=device-width, initial-scale=1">')
+  })
+
+  it.each(pages)('%s links every stylesheet', async (path) => {
+    const res = await request(app).get(path)
+
+    for (const name of stylesheets) {
+      expect(res.text).toContain(`href="/css/${name}.css"`)
+    }
+  })
+
+  it.each(['base', 'header', 'footer', 'components'])('%s.css has a small-screen media query', async (name) => {
+    const res = await request(app).get(`/css/${name}.css`)
+
+    expect(res.status).toBe(200)
+    expect(res.text).toMatch(/@media \(max-width: 40rem\)/)
+  })
+
+  it.each(['header', 'components'])('%s.css sets a 44px minimum tap size', async (name) => {
+    const res = await request(app).get(`/css/${name}.css`)
+
+    expect(res.text).toContain('min-height: 2.75rem')
+  })
+})

@@ -3,8 +3,8 @@
 The feature is complete and mergeable when every item passes.
 
 ## Automated
-- [ ] `npm test` passes, including the new viewport, stylesheet-link, and responsive-rule tests.
-- [ ] `npm run build` completes with no TypeScript errors.
+- [x] `npm test` passes, including the new viewport, stylesheet-link, and responsive-rule tests.
+- [x] `npm run build` completes with no TypeScript errors.
 - [ ] The `build-and-test` CI check passes on the PR.
 
 ## Browser, at about 375px, 768px, and 1280px
@@ -18,6 +18,6 @@ The feature is complete and mergeable when every item passes.
 - [ ] Nav links and the home page button are at least about 44px tall at 375px.
 
 ## Merge readiness
-- [ ] `specs/roadmap.md` shows responsive design as phase 5, marked done, and no longer in the polish phase.
-- [ ] No `dist/` or `node_modules/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] `specs/roadmap.md` shows responsive design as phase 5, marked done, and no longer in the polish phase.
+- [x] No `dist/` or `node_modules/` committed.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.

@@ -5,3 +5,8 @@
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* Responsive: keep footer text readable on small screens. */
+@media (max-width: 40rem) {
+  .site-footer { font-size: 0.85rem; text-align: center; overflow-wrap: anywhere; }
+}

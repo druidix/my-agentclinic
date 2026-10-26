@@ -22,3 +22,12 @@ body {
 main { flex: 1; padding-top: 2rem; padding-bottom: 2rem; }
 
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Responsive: tighter padding on small screens, more room on wide ones. */
+@media (max-width: 40rem) {
+  main { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+}
+
+@media (min-width: 64rem) {
+  .container { padding: 0 1.5rem; }
+}

@@ -11,3 +11,14 @@
   font-weight: 600;
   text-decoration: none;
 }
+
+/* Responsive: touch-sized buttons on small screens. */
+@media (max-width: 40rem) {
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem; /* 44px tap target */
+    text-align: center;
+  }
+}
