@@ -14,6 +14,10 @@
 
 - SQLite: a single-file, zero-setup database that suits demos and course use.
 
+## Testing
+
+- Vitest for app testing: it runs TypeScript directly, starts fast, and has a watch mode.
+
 ## Tooling
 
 - `tsc` for builds (already configured).
