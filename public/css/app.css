@@ -12,6 +12,12 @@ body > main { flex: 1; }
 header nav { flex-wrap: wrap; }
 .nav-links { flex-wrap: wrap; }
 
+/* Brand: a logo placeholder, larger than the nav links. */
+.brand {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
 /* Active nav link. */
 nav a[aria-current="page"] {
   color: var(--pico-primary-inverse);
