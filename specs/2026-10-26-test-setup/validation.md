@@ -17,7 +17,7 @@ The feature is complete and mergeable when every item passes.
 - [x] `npm run dev` serves the home page.
 - [x] `npm start` (after build) serves the home page and `/health`.
 - [x] `PORT=4000 npm start` listens on 4000.
-- [ ] The pages look the same as before in a browser.
+- [x] The pages look the same as before in a browser.
 
 ## Merge readiness
 - [x] `specs/roadmap.md` marks phase 3 done.
