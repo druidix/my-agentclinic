@@ -15,7 +15,7 @@ The feature is complete and mergeable when every item passes.
 - [x] Light and dark themes still work at all three widths.
 
 ## Touch targets
-- [ ] Nav links and the home page button are at least about 44px tall at 375px.
+- [x] Nav links and the home page button are at least about 44px tall at 375px.
 
 ## Merge readiness
 - [x] `specs/roadmap.md` shows responsive design as phase 5, marked done, and no longer in the polish phase.
