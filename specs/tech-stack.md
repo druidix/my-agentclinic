@@ -21,4 +21,4 @@
 ## Tooling
 
 - `tsc` for builds (already configured).
-- Plain CSS, designed to look attractive and responsive.
+- Pico CSS as the CSS framework: classless, semantic-HTML-first styling with built-in light and dark themes and responsive defaults. Small custom stylesheets add only what Pico does not cover.
