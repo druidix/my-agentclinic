@@ -14,7 +14,7 @@ The feature is complete and mergeable when every item passes.
 - [x] The README badge renders and shows the workflow status.
 
 ## Branch protection (owner action in GitHub)
-- [ ] After the first run, in Settings → Branches, add a rule for `main` that requires the `build-and-test` status check to pass before merging.
+- [x] After the first run, in Settings → Branches, add a rule for `main` that requires the `build-and-test` status check to pass before merging.
 
 ## Merge readiness
 - [x] `specs/roadmap.md` marks phase 4 done.
