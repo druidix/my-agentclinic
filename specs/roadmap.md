@@ -5,7 +5,7 @@ Very small phases, each leaving the app runnable.
 1. **Server skeleton (done):** install Express, serve "Hello AgentClinic" from `src/index.ts`, add a `start` script.
 2. **Layout (done):** shared EJS layout, stylesheet, and navigation.
 3. **Test setup (done):** install Vitest and supertest, split `src/app.ts` from `src/index.ts`, add `npm test`, and add tests for `/`, `/health`, the placeholder routes, 404, and the active nav link.
-4. **CI:** a GitHub Actions workflow that runs `npm ci`, `npm run build`, and `npm test` on pull requests and pushes to `main`.
+4. **CI (done):** a GitHub Actions workflow that runs `npm ci`, `npm run build`, and `npm test` on pull requests and pushes to `main`.
 5. **Dashboard shell:** a staff dashboard page with placeholder panels.
 6. **Agents:** list agents (in-memory seed data).
 7. **Ailments:** list ailments and show which agents have them.
