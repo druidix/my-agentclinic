@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { getAgents } from '../data/agents'
+import { getAilments } from '../data/ailments'
 import { sections } from '../sections'
 
 type Panel = {
@@ -17,6 +18,7 @@ type DashboardView = {
 function panelFor({ href, label, note, placeholder }: (typeof sections)[number]): Panel {
   if (placeholder) return { label, note }
   if (href === '/agents') return { label, note: `${getAgents().length} agents are waiting for relief.`, href }
+  if (href === '/ailments') return { label, note: `${getAilments().length} ailments are going around.`, href }
   return { label, note, href }
 }
 

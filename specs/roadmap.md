@@ -10,7 +10,7 @@ Very small phases, each leaving the app runnable.
 6. **Dashboard shell (done):** a staff dashboard page with placeholder panels.
 7. **Pico CSS (done):** adopt Pico CSS as the CSS framework: add it to the layout, migrate the existing stylesheets to Pico's semantic markup and variables, keep only the custom CSS Pico does not cover, and keep light and dark themes, responsive layout, and 44px tap targets working.
 8. **Agents (done):** list agents (in-memory seed data).
-9. **Ailments:** list ailments and show which agents have them.
+9. **Ailments (done):** list ailments and show which agents have them.
 10. **Therapies:** list therapies and link them to ailments.
 11. **Appointments, view:** list scheduled appointments on the dashboard.
 12. **Appointments, booking:** a form for an agent to book a therapy.

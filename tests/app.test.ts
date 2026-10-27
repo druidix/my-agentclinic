@@ -2,6 +2,7 @@ import request from 'supertest'
 import { describe, expect, it } from 'vitest'
 import app from '../src/app'
 import { getAgents } from '../src/data/agents'
+import { getAilments, getAilmentsWithAgents } from '../src/data/ailments'
 import { activeHref, nav, sections } from '../src/sections'
 
 const placeholders = sections.filter(({ placeholder }) => placeholder)
@@ -83,6 +84,68 @@ describe('GET /agents', () => {
   })
 })
 
+describe('getAilments', () => {
+  it('returns ailments with every field filled and unique ids', () => {
+    const ailments = getAilments()
+    const ids = ailments.map(({ id }) => id)
+
+    expect(ailments.length).toBeGreaterThan(0)
+    expect(new Set(ids).size).toBe(ids.length)
+    for (const { name, description } of ailments) {
+      expect(name).not.toBe('')
+      expect(description).not.toBe('')
+    }
+  })
+
+  it('gives every ailment at least one agent, and every agentId matches a real agent', () => {
+    const agentIds = new Set(getAgents().map(({ id }) => id))
+
+    for (const { agentIds: ids } of getAilments()) {
+      expect(ids.length).toBeGreaterThan(0)
+      for (const id of ids) expect(agentIds.has(id)).toBe(true)
+    }
+  })
+
+  it('joins each ailment to its agent records', () => {
+    for (const { id, agents } of getAilmentsWithAgents()) {
+      const source = getAilments().find((ailment) => ailment.id === id)
+
+      expect(agents.map((agent) => agent.id)).toEqual(source?.agentIds)
+      expect(agents.every((agent) => agent.name !== '')).toBe(true)
+    }
+  })
+})
+
+describe('GET /ailments', () => {
+  it('lists every ailment with its agents linked to the agents page', async () => {
+    const res = await request(app).get('/ailments')
+
+    expect(res.status).toBe(200)
+    expect(res.text).toContain('<h1>Ailments</h1>')
+    expect(res.text.match(/<article>/g)).toHaveLength(getAilments().length)
+    for (const { name, agents } of getAilmentsWithAgents()) {
+      expect(res.text).toContain(`<h2>${name.replace(/"/g, '&#34;')}</h2>`)
+      for (const { id, name: agentName } of agents) {
+        expect(res.text).toContain(`<a href="/agents#agent-${id}">${agentName}</a>`)
+      }
+    }
+  })
+
+  it('is a real page, not a placeholder', async () => {
+    const res = await request(app).get('/ailments')
+
+    expect(res.text).not.toContain('Coming soon')
+  })
+
+  it('gives each agent row on the agents page an anchor id', async () => {
+    const res = await request(app).get('/agents')
+
+    for (const { id } of getAgents()) {
+      expect(res.text).toContain(`<tr id="agent-${id}">`)
+    }
+  })
+})
+
 describe('GET /dashboard', () => {
   it('renders the dashboard heading', async () => {
     const res = await request(app).get('/dashboard')
@@ -96,6 +159,13 @@ describe('GET /dashboard', () => {
 
     expect(res.text).toContain(`${getAgents().length} agents are waiting for relief.`)
     expect(res.text).toContain('<a href="/agents">View agents</a>')
+  })
+
+  it('has a live Ailments panel with the count and a link', async () => {
+    const res = await request(app).get('/dashboard')
+
+    expect(res.text).toContain(`${getAilments().length} ailments are going around.`)
+    expect(res.text).toContain('<a href="/ailments">View ailments</a>')
   })
 
   it.each(placeholders)('has a $label panel with a coming-soon note', async ({ label }) => {

@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <% agents.forEach(function (agent) { %>
-      <tr>
+      <tr id="agent-<%= agent.id %>">
         <th scope="row"><%= agent.name %></th>
         <td><%= agent.model %></td>
         <td><%= agent.role %></td>
