@@ -1,5 +1,7 @@
 # Plan: Layout (roadmap phase 2)
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 ## 1. Dependencies
 1. Install `ejs` and `express-ejs-layouts` as dependencies.
 2. Install `@types/ejs` and `@types/express-ejs-layouts` if they are available and needed.

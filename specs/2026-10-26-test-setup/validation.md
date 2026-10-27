@@ -9,7 +9,7 @@ The feature is complete and mergeable when every item passes.
 
 ## Tests detect failures
 - [x] Temporarily break a route (for example, change the `/health` response). `npm test` fails and names the failing test.
-- [x] Temporarily remove the `active` class logic. The nav test fails.
+- [x] Temporarily remove the active-link logic (originally an `active` class, now `aria-current`). The nav test fails.
 - [x] Revert both changes and confirm `npm test` passes again.
 
 ## App still runs

@@ -1,9 +1,11 @@
 # Plan: Dashboard shell (roadmap phase 6)
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 ## 1. Route and view
 1. In `src/app.ts`, stop rendering `/dashboard` through the generic placeholder loop and give it its own route that renders `dashboard`.
 2. Add `views/dashboard.ejs`: a page heading and a grid of four panels (Agents, Ailments, Therapies, Appointments).
-3. Each panel is a `<section>` with a heading and a short "coming soon" note naming the phase that fills it. No fake data.
+3. Each panel is a `<article>` with a heading and a short "coming soon" note naming the phase that fills it. No fake data.
 4. Drive the panels from a small array in the route so later phases can swap in real content.
 
 ## 2. Styles

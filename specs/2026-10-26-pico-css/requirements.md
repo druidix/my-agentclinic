@@ -16,7 +16,7 @@ Out of scope:
 - Accessibility auditing beyond the nav checks (final polish phase).
 
 ## Decisions
-- **npm package, served locally.** `@picocss/pico` is a pinned dependency served from `node_modules` at `/vendor/pico`. It works offline and makes no third-party request.
+- **npm package, served locally.** `@picocss/pico` is a dependency, locked by `package-lock.json`, served from `node_modules` at `/vendor/pico`. It works offline and makes no third-party request.
 - **Standard `pico.min.css`**, not the classless build, so `.container` and `.grid` are available.
 - **Migrate everything, keep minimal custom CSS.** One `app.css` replaces `tokens.css`, `base.css`, `header.css`, `footer.css`, and `components.css`, so styling is not duplicated.
 - **Pico's variables replace our tokens.** Dark mode follows `prefers-color-scheme` as Pico provides it.

@@ -8,7 +8,7 @@
 ## 2. Install and configure Vitest
 1. Install `vitest` and `supertest` as dev dependencies, plus `@types/supertest`.
 2. Add a `test` script (`vitest run`) and a `test:watch` script (`vitest`).
-3. Add a minimal `vitest.config.ts` that includes only `tests/**/*.test.ts`.
+3. Add a minimal `vitest.config.mts` that includes only `tests/**/*.test.ts`.
 4. Exclude `tests/` from the `tsc` build, or confirm it does not emit into `dist/`.
 
 ## 3. Write the first tests

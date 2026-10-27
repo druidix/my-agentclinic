@@ -1,5 +1,7 @@
 # Requirements: Responsive design
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 Product requires the app to conform to responsive design.
 
 ## Scope

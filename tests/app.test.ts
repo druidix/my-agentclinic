@@ -103,6 +103,20 @@ describe('activeHref', () => {
 })
 
 describe('layout', () => {
+  it.each(pages)('$path has a skip link to the main content', async ({ path }) => {
+    const res = await request(app).get(path)
+
+    expect(res.text).toContain('<a class="skip-link" href="#main">')
+    expect(res.text).toContain('<main id="main"')
+  })
+
+  it('sets security headers', async () => {
+    const res = await request(app).get('/')
+
+    expect(res.headers['content-security-policy']).toContain("default-src 'self'")
+    expect(res.headers['x-content-type-options']).toBe('nosniff')
+  })
+
   it('has the viewport meta tag', async () => {
     const res = await request(app).get('/')
 

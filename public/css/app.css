@@ -19,8 +19,24 @@ header nav { flex-wrap: wrap; }
   line-height: 1.2;
 }
 
-/* Active nav link. */
+/* Skip link: hidden until it receives keyboard focus. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: var(--pico-background-color);
+  color: var(--pico-color);
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: var(--pico-border-radius);
+}
+.skip-link:focus { top: 0.5rem; }
+
+/* Active nav link: underlined as well as coloured, so it is not shown by colour alone. */
 header nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
   color: var(--pico-primary-inverse);
   background: var(--pico-primary-background);
   border-radius: var(--pico-border-radius);
