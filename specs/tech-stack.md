@@ -13,6 +13,7 @@
 ## Data
 
 - SQLite: a single-file, zero-setup database that suits demos and course use.
+- All persisted timestamps are UTC, whether the store is persistent (SQLite) or transient (a cache such as Redis). Store ISO 8601 strings with a `Z` suffix, or Unix epoch times. Convert to the viewer's local time zone only when rendering.
 
 ## Testing
 
