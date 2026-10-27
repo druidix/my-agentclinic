@@ -2,6 +2,10 @@
 
 ## 2026-10-26
 
+- Bump actions/setup-node from 4.4.0 to 7.1.0 (#13) (174f33a)
+- Bump actions/checkout from 4.4.0 to 7.0.1 (#12) (88c7547)
+- Dependabot: ignore major bumps of @types/node and typescript (#17) (afa4af5)
+- Phase 8: Agents (#16) (dac4a4e)
 - Docs and hardening (#11) (7591e1f)
 - Refactor: prepare for the data phases (#10) (338aac9)
 - Phase 7: Pico CSS (#9) (771e014)
