@@ -2,6 +2,7 @@
 
 ## 2026-10-26
 
+- Tech stack: persisted timestamps are UTC (#20) (4bd7163)
 - Bump actions/setup-node from 4.4.0 to 7.1.0 (#13) (174f33a)
 - Bump actions/checkout from 4.4.0 to 7.0.1 (#12) (88c7547)
 - Dependabot: ignore major bumps of @types/node and typescript (#17) (afa4af5)
