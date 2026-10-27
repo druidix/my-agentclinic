@@ -1,9 +1,10 @@
 import request from 'supertest'
 import { describe, expect, it } from 'vitest'
 import app from '../src/app'
+import { getAgents } from '../src/data/agents'
 import { activeHref, nav, sections } from '../src/sections'
 
-const placeholders = sections.filter(({ href }) => href !== '/dashboard')
+const placeholders = sections.filter(({ placeholder }) => placeholder)
 const pages = nav.map(({ href, label }) => ({ path: href, label }))
 
 describe('GET /', () => {
@@ -44,12 +45,57 @@ describe('placeholder routes', () => {
   })
 })
 
+describe('getAgents', () => {
+  it('returns six agents with every field filled', () => {
+    const agents = getAgents()
+
+    expect(agents).toHaveLength(6)
+    for (const agent of agents) {
+      expect(Object.values(agent).every((value) => value !== '')).toBe(true)
+    }
+  })
+
+  it('gives each agent a unique id', () => {
+    const ids = getAgents().map(({ id }) => id)
+
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+})
+
+describe('GET /agents', () => {
+  it('lists every agent in a captioned table', async () => {
+    const res = await request(app).get('/agents')
+
+    expect(res.status).toBe(200)
+    expect(res.text).toContain('<h1>Agents</h1>')
+    expect(res.text).toContain('<caption>')
+    expect(res.text.match(/<th scope="row">/g)).toHaveLength(getAgents().length)
+    for (const { name, complaint } of getAgents()) {
+      expect(res.text).toContain(name)
+      expect(res.text).toContain(complaint.replace(/"/g, '&#34;'))
+    }
+  })
+
+  it('is a real page, not a placeholder', async () => {
+    const res = await request(app).get('/agents')
+
+    expect(res.text).not.toContain('Coming soon')
+  })
+})
+
 describe('GET /dashboard', () => {
   it('renders the dashboard heading', async () => {
     const res = await request(app).get('/dashboard')
 
     expect(res.status).toBe(200)
     expect(res.text).toContain('<h1>Dashboard</h1>')
+  })
+
+  it('has a live Agents panel with the count and a link', async () => {
+    const res = await request(app).get('/dashboard')
+
+    expect(res.text).toContain(`${getAgents().length} agents are waiting for relief.`)
+    expect(res.text).toContain('<a href="/agents">View agents</a>')
   })
 
   it.each(placeholders)('has a $label panel with a coming-soon note', async ({ label }) => {

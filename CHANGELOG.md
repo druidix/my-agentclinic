@@ -2,6 +2,7 @@
 
 ## 2026-10-26
 
+- Docs and hardening (#11) (7591e1f)
 - Refactor: prepare for the data phases (#10) (338aac9)
 - Phase 7: Pico CSS (#9) (771e014)
 - Tech stack: use Pico CSS (#8) (f401e0b)
