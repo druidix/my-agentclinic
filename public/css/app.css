@@ -5,6 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 body > main { flex: 1; }
 
@@ -19,7 +20,7 @@ header nav { flex-wrap: wrap; }
 }
 
 /* Active nav link. */
-nav a[aria-current="page"] {
+header nav a[aria-current="page"] {
   color: var(--pico-primary-inverse);
   background: var(--pico-primary-background);
   border-radius: var(--pico-border-radius);
@@ -32,36 +33,17 @@ body > footer {
   border-top: 1px solid var(--pico-muted-border-color);
 }
 
-/* Dashboard panels: one column by default, more as space allows. */
-.panel-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.panel-grid article { margin: 0; }
-.panel-grid h2 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-.panel-grid p { margin: 0; color: var(--pico-muted-color); }
-
-@media (min-width: 40.01rem) {
-  .panel-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 64rem) {
-  .panel-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
 /* Responsive: stack the brand above the nav, and use touch-sized links and buttons. */
 @media (max-width: 40rem) {
   header nav { flex-direction: column; align-items: stretch; }
   .nav-links li { flex: 1 1 auto; }
 
-  nav a,
-  [role="button"] {
+  header nav a,
+  a[role="button"] {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 2.75rem; /* 44px tap target */
-    text-align: center;
   }
 
   body > footer { font-size: 0.85rem; text-align: center; overflow-wrap: anywhere; }

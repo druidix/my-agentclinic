@@ -3,10 +3,10 @@
   <p>Staff overview of agents, ailments, therapies, and appointments.</p>
 </hgroup>
 
-<div class="panel-grid">
+<div class="grid">
   <% panels.forEach(function (panel) { %>
   <article>
-    <h2><%= panel.title %></h2>
+    <h2><%= panel.label %></h2>
     <p><%= panel.note %></p>
   </article>
   <% }) %>
