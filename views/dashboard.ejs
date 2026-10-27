@@ -8,6 +8,7 @@
   <article>
     <h2><%= panel.label %></h2>
     <p><%= panel.note %></p>
+    <% if (panel.href) { %><p><a href="<%= panel.href %>">View <%= panel.label.toLowerCase() %></a></p><% } %>
   </article>
   <% }) %>
 </div>

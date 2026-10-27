@@ -3,6 +3,7 @@ export type Section = {
   label: string
   phase: number
   note: string
+  placeholder: boolean
 }
 
 export type NavItem = {
@@ -11,11 +12,11 @@ export type NavItem = {
 }
 
 export const sections: Section[] = [
-  { href: '/dashboard', label: 'Dashboard', phase: 6, note: 'Staff overview of the clinic.' },
-  { href: '/agents', label: 'Agents', phase: 8, note: 'Coming soon: the agent list arrives in phase 8.' },
-  { href: '/ailments', label: 'Ailments', phase: 9, note: 'Coming soon: ailments arrive in phase 9.' },
-  { href: '/therapies', label: 'Therapies', phase: 10, note: 'Coming soon: therapies arrive in phase 10.' },
-  { href: '/appointments', label: 'Appointments', phase: 11, note: 'Coming soon: scheduled appointments arrive in phase 11.' },
+  { href: '/dashboard', label: 'Dashboard', phase: 6, note: 'Staff overview of the clinic.', placeholder: false },
+  { href: '/agents', label: 'Agents', phase: 8, note: 'Coming soon: the agent list arrives in phase 8.', placeholder: false },
+  { href: '/ailments', label: 'Ailments', phase: 9, note: 'Coming soon: ailments arrive in phase 9.', placeholder: true },
+  { href: '/therapies', label: 'Therapies', phase: 10, note: 'Coming soon: therapies arrive in phase 10.', placeholder: true },
+  { href: '/appointments', label: 'Appointments', phase: 11, note: 'Coming soon: scheduled appointments arrive in phase 11.', placeholder: true },
 ]
 
 export const nav: NavItem[] = [

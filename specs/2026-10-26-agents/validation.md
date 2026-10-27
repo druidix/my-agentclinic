@@ -3,15 +3,15 @@
 The feature is complete and mergeable when every item passes.
 
 ## Automated
-- [ ] `npm test` passes, including the new data, route, nav, and dashboard tests.
-- [ ] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
+- [x] `npm test` passes, including the new data, route, nav, and dashboard tests.
+- [x] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
 - [ ] The `build-and-test` CI check passes on the PR.
 
 ## Behaviour
-- [ ] `/agents` lists all six seed agents with name, model, role, and complaint.
-- [ ] The table has a caption and header cells.
-- [ ] The Agents nav link is active on `/agents`, and `/agents` is not a placeholder.
-- [ ] The dashboard Agents panel shows the count and links to `/agents`; the other panels still say "coming soon".
+- [x] `/agents` lists all six seed agents with name, model, role, and complaint.
+- [x] The table has a caption and header cells.
+- [x] The Agents nav link is active on `/agents`, and `/agents` is not a placeholder.
+- [x] The dashboard Agents panel shows the count and links to `/agents`; the other panels still say "coming soon".
 
 ## Browser, at about 375px, 768px, and 1280px
 - [ ] The list is readable, with no horizontal scrolling of the page (the table may scroll inside its wrapper).

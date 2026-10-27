@@ -1,0 +1,28 @@
+<hgroup>
+  <h1><%= title %></h1>
+  <p>AI agents getting relief from their humans.</p>
+</hgroup>
+
+<div class="overflow-auto">
+  <table>
+    <caption>Agents at the clinic</caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Model</th>
+        <th scope="col">Role</th>
+        <th scope="col">Complaint about their human</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% agents.forEach(function (agent) { %>
+      <tr>
+        <th scope="row"><%= agent.name %></th>
+        <td><%= agent.model %></td>
+        <td><%= agent.role %></td>
+        <td><%= agent.complaint %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
