@@ -3,16 +3,16 @@
 The feature is complete and mergeable when every item passes.
 
 ## Automated
-- [ ] `npm test` passes, including the new data, join, route, link, nav, and dashboard tests.
-- [ ] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
+- [x] `npm test` passes, including the new data, join, route, link, nav, and dashboard tests.
+- [x] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
 - [ ] The `build-and-test` CI check passes on the PR.
 
 ## Behaviour
-- [ ] `/ailments` lists every seed ailment with its description and its agents.
+- [x] `/ailments` lists every seed ailment with its description and its agents.
 - [ ] Every agent name links to `/agents#agent-<id>`, and the link lands on that agent's row.
-- [ ] Every seed `agentId` matches a real agent, and every ailment has at least one agent.
-- [ ] The Ailments nav link is active on `/ailments`, and `/ailments` is not a placeholder.
-- [ ] The dashboard Ailments panel shows the count and links to `/ailments`; Therapies and Appointments still say "coming soon".
+- [x] Every seed `agentId` matches a real agent, and every ailment has at least one agent.
+- [x] The Ailments nav link is active on `/ailments`, and `/ailments` is not a placeholder.
+- [x] The dashboard Ailments panel shows the count and links to `/ailments`; Therapies and Appointments still say "coming soon".
 
 ## Browser, at about 375px, 768px, and 1280px
 - [ ] The page is readable, with no horizontal scrolling.
