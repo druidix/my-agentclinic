@@ -5,7 +5,7 @@ The PR is complete and mergeable when every item passes.
 ## Automated
 - [x] `npm test` passes, including the new skip-link and security-header tests.
 - [x] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
-- [ ] The `build-and-test` CI check passes on the PR, including the `npm audit` step.
+- [x] The `build-and-test` CI check passes on the PR, including the `npm audit` step.
 
 ## Docs
 - [x] Older specs carry a "Superseded" note, and the stale phase numbers and facts are corrected.
@@ -19,11 +19,11 @@ The PR is complete and mergeable when every item passes.
 - [x] CI has `timeout-minutes`, and both actions are pinned to commit SHAs.
 
 ## Browser, in light and dark
-- [ ] Tab reaches the skip link first, and it moves focus to the main content.
-- [ ] The active nav link has an underline and is distinct without relying on colour.
-- [ ] Muted text and the active link have adequate contrast.
-- [ ] The pages look unchanged under the CSP, with no console errors.
+- [x] Tab reaches the skip link first, and it moves focus to the main content.
+- [x] The active nav link has an underline and is distinct without relying on colour.
+- [x] Muted text and the active link have adequate contrast.
+- [x] The pages look unchanged under the CSP, with no console errors.
 
 ## Merge readiness
 - [x] No `dist/` or `node_modules/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.
