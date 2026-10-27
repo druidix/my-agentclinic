@@ -1,31 +1,15 @@
 import path from 'path'
 import express from 'express'
+import type { ErrorRequestHandler } from 'express'
 import expressLayouts from 'express-ejs-layouts'
+import pages from './routes/pages'
+import placeholders from './routes/placeholders'
+import { activeHref, nav } from './sections'
 
 const app = express()
 const rootDir = path.join(__dirname, '..')
 
-type Panel = {
-  title: string
-  note: string
-}
-
-const panels: Panel[] = [
-  { title: 'Agents', note: 'Coming soon: the agent list arrives in phase 8.' },
-  { title: 'Ailments', note: 'Coming soon: ailments arrive in phase 9.' },
-  { title: 'Therapies', note: 'Coming soon: therapies arrive in phase 10.' },
-  { title: 'Appointments', note: 'Coming soon: scheduled appointments arrive in phase 11.' },
-]
-
-const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/dashboard', label: 'Dashboard' },
-  { href: '/agents', label: 'Agents' },
-  { href: '/ailments', label: 'Ailments' },
-  { href: '/therapies', label: 'Therapies' },
-  { href: '/appointments', label: 'Appointments' },
-]
-
+app.disable('x-powered-by')
 app.set('view engine', 'ejs')
 app.set('views', path.join(rootDir, 'views'))
 app.set('layout', 'layout')
@@ -35,26 +19,21 @@ app.use('/vendor/pico', express.static(path.join(rootDir, 'node_modules', '@pico
 
 app.use((req, res, next) => {
   res.locals.nav = nav
-  res.locals.currentPath = req.path
+  res.locals.activeHref = activeHref(req.path)
   next()
 })
 
-app.get('/', (_req, res) => {
-  res.render('index', { title: 'Home' })
+app.use(pages)
+app.use(placeholders)
+
+app.use((_req, res) => {
+  res.status(404).render('404', { title: 'Page not found' })
 })
 
-app.get('/dashboard', (_req, res) => {
-  res.render('dashboard', { title: 'Dashboard', panels })
-})
-
-for (const { href, label } of nav.slice(2)) {
-  app.get(href, (_req, res) => {
-    res.render('placeholder', { title: label })
-  })
+const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
+  console.error(err)
+  res.status(500).render('error', { title: 'Something went wrong' })
 }
-
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' })
-})
+app.use(errorHandler)
 
 export default app
