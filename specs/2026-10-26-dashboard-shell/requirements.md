@@ -1,5 +1,7 @@
 # Requirements: Dashboard shell
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 Mary (engineering) wants a dashboard for easy access by agents and staff. This phase builds the page and its layout, with no data yet.
 
 ## Scope
@@ -10,7 +12,7 @@ In scope:
 - Automated tests for the route, the panels, and the active nav link.
 
 Out of scope:
-- Any real or seed data (phases 7 to 10).
+- Any real or seed data (phases 8 to 11).
 - Links from panels to their list pages.
 - Charts, counts, or interactivity.
 - Authentication for staff.

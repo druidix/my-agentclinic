@@ -10,7 +10,7 @@ In scope:
 
 Out of scope (later phases):
 - EJS templates, layout, and styling (phase 2).
-- Dashboard, data, and SQLite (phases 3 onward).
+- Dashboard, data, and SQLite (later phases).
 - Automated tests.
 
 ## Decisions

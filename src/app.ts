@@ -2,6 +2,7 @@ import path from 'path'
 import express from 'express'
 import type { ErrorRequestHandler } from 'express'
 import expressLayouts from 'express-ejs-layouts'
+import helmet from 'helmet'
 import pages from './routes/pages'
 import placeholders from './routes/placeholders'
 import { activeHref, nav } from './sections'
@@ -10,6 +11,8 @@ const app = express()
 const rootDir = path.join(__dirname, '..')
 
 app.disable('x-powered-by')
+// Demos run over plain http on localhost, so don't upgrade subresources to https.
+app.use(helmet({ contentSecurityPolicy: { useDefaults: true, directives: { 'upgrade-insecure-requests': null } } }))
 app.set('view engine', 'ejs')
 app.set('views', path.join(rootDir, 'views'))
 app.set('layout', 'layout')

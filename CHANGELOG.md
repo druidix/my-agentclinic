@@ -2,13 +2,11 @@
 
 ## 2026-10-26
 
-- Mark dashboard shell phase done (3f8e963)
-- Tick dashboard browser validation (5a12d7d)
-- Add dashboard shell with four placeholder panels (abdac72)
-- Add plan, requirements, and validation for dashboard shell (00a0bc5)
+- Refactor: prepare for the data phases (#10) (338aac9)
+- Phase 7: Pico CSS (#9) (771e014)
+- Tech stack: use Pico CSS (#8) (f401e0b)
+- Phase 6: Dashboard shell (#7) (61454ea)
 - Phase 5: Responsive design (#6) (b5b8671)
-- Make layout responsive and test the responsive rules (262e6b7)
-- Add responsive design phase to roadmap with specs (8081b8d)
 - Phase 4: CI (#5) (3c8f15b)
 - Phase 3: Test setup (#4) (6f6caa9)
 - Add CI phase to roadmap (82990e2)

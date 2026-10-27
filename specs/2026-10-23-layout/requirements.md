@@ -1,5 +1,7 @@
 # Requirements: Layout
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 ## Scope
 In scope:
 - A shared EJS layout used by every page.
@@ -10,8 +12,8 @@ In scope:
 - Active nav link highlighting.
 
 Out of scope (later phases):
-- Real dashboard, agent, ailment, therapy, or appointment content (phases 3 to 8).
-- Responsive and mobile layout (deferred to phase 10, polish).
+- Real dashboard, agent, ailment, therapy, or appointment content (later phases).
+- Responsive and mobile layout (done later, in the responsive design phase).
 - HTMX and client-side JavaScript.
 - Data and SQLite.
 - Automated tests.

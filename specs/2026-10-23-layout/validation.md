@@ -1,5 +1,7 @@
 # Validation: Layout
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 The feature is complete and mergeable when every item passes.
 
 ## Build
@@ -10,14 +12,14 @@ The feature is complete and mergeable when every item passes.
 
 ## curl checks
 - [x] `curl localhost:3000/` returns 200 with layout HTML (header, nav, footer) and "Hello AgentClinic".
-- [x] `curl -I localhost:3000/styles.css` returns 200 with `Content-Type: text/css`.
+- [x] `curl -I localhost:3000/styles.css` (the stylesheet is now `/css/app.css`) returns 200 with `Content-Type: text/css`.
 - [x] `curl localhost:3000/health` still returns `{"status":"ok"}`.
 - [x] `/dashboard`, `/agents`, `/ailments`, `/therapies`, and `/appointments` each return 200.
 - [x] An unknown path returns 404 and the server stays up.
 
 ## Browser check
 - [x] The home page shows the header, nav, footer, and styling in a modern browser.
-- [ ] ~~Narrowing the window to phone width keeps the layout usable, with no horizontal scroll.~~ Deferred to phase 10 (polish).
+- [ ] ~~Narrowing the window to phone width keeps the layout usable, with no horizontal scroll.~~ Deferred; done later in the responsive design phase.
 - [x] Switching the OS between light and dark mode changes the theme. (Firefox "Website appearance" must be set to Automatic/System.)
 
 ## Navigation

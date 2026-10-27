@@ -37,5 +37,5 @@ The first review PR refactored the code. This one covers the spec, doc, accessib
 4. Confirm the CI check passes on the PR.
 
 ## 8. Wrap up
-1. Run `/changelog` last, so this PR's own commits are included.
+1. The changelog is generated from `main`'s history, because this branch's own commits become dead hashes when the PR is squash-merged. Run `/changelog` on the next branch to add this PR's merge commit.
 2. Merge the PR once CI is green and the user asks for the merge.

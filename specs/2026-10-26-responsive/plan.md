@@ -1,5 +1,7 @@
 # Plan: Responsive design (roadmap phase 5)
 
+> **Superseded in part:** the CSS in this spec was replaced by Pico CSS in `specs/2026-10-26-pico-css/`. The stylesheet files and class names named here no longer exist.
+
 ## 1. Stylesheet changes
 Keep the styles modular: each concern's responsive rules live in its own CSS file.
 1. `base.css`: tighten page padding on small screens and add more room on wide screens.
