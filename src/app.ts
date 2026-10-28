@@ -7,7 +7,7 @@ import agents from './routes/agents'
 import ailments from './routes/ailments'
 import therapies from './routes/therapies'
 import pages from './routes/pages'
-import placeholders from './routes/placeholders'
+import appointments from './routes/appointments'
 import { activeHref, nav } from './sections'
 
 const app = express()
@@ -33,7 +33,7 @@ app.use(pages)
 app.use(agents)
 app.use(ailments)
 app.use(therapies)
-app.use(placeholders)
+app.use(appointments)
 
 app.use((_req, res) => {
   res.status(404).render('404', { title: 'Page not found' })

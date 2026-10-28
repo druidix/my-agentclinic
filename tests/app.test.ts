@@ -3,10 +3,11 @@ import { describe, expect, it } from 'vitest'
 import app from '../src/app'
 import { getAgents } from '../src/data/agents'
 import { getAilments, getAilmentsWithAgents } from '../src/data/ailments'
+import { getAppointments, getAppointmentsWithDetails } from '../src/data/appointments'
+import { formatLocal } from '../src/format'
 import { getTherapies, getTherapiesForAilment, getTherapiesWithAilments } from '../src/data/therapies'
 import { activeHref, nav, sections } from '../src/sections'
 
-const placeholders = sections.filter(({ placeholder }) => placeholder)
 const pages = nav.map(({ href, label }) => ({ path: href, label }))
 
 describe('GET /', () => {
@@ -34,23 +35,6 @@ describe('GET /health', () => {
     const res = await request(app).get('/health')
 
     expect(res.headers['x-powered-by']).toBeUndefined()
-  })
-})
-
-describe('placeholder routes', () => {
-  it('has a live Therapies panel with the count and a link', async () => {
-    const res = await request(app).get('/dashboard')
-
-    expect(res.text).toContain(`${getTherapies().length} therapies are ready to help.`)
-    expect(res.text).toContain('<a href="/therapies">View therapies</a>')
-  })
-
-  it.each(placeholders)('$href renders its title', async ({ href, label }) => {
-    const res = await request(app).get(href)
-
-    expect(res.status).toBe(200)
-    expect(res.text).toContain(`<h1>${label}</h1>`)
-    expect(res.text).toContain('Coming soon')
   })
 })
 
@@ -225,6 +209,84 @@ describe('GET /therapies', () => {
   })
 })
 
+describe('getAppointments', () => {
+  it('has unique ids, valid statuses, and real agent and therapy ids', () => {
+    const appointments = getAppointments()
+    const agentIds = getAgents().map(({ id }) => id)
+    const therapyIds = getTherapies().map(({ id }) => id)
+
+    expect(new Set(appointments.map(({ id }) => id)).size).toBe(appointments.length)
+    expect(appointments.length).toBeGreaterThan(0)
+    for (const { agentId, therapyId, status } of appointments) {
+      expect(agentIds).toContain(agentId)
+      expect(therapyIds).toContain(therapyId)
+      expect(['scheduled', 'completed', 'cancelled']).toContain(status)
+    }
+  })
+
+  it('stores startsAt as ISO 8601 UTC ending in Z that round-trips through Date', () => {
+    for (const { startsAt } of getAppointments()) {
+      expect(startsAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/)
+      expect(new Date(startsAt).toISOString().replace('.000Z', 'Z')).toBe(startsAt)
+    }
+  })
+
+  it('joins agent and therapy records and sorts by start time', () => {
+    const details = getAppointmentsWithDetails()
+
+    expect(details).toHaveLength(getAppointments().length)
+    expect(details.map(({ startsAt }) => startsAt)).toEqual(details.map(({ startsAt }) => startsAt).sort())
+    for (const { id, agent, therapy } of details) {
+      const source = getAppointments().find((appointment) => appointment.id === id)
+      expect(agent.id).toBe(source?.agentId)
+      expect(therapy.id).toBe(source?.therapyId)
+    }
+  })
+})
+
+describe('formatLocal', () => {
+  it('formats a UTC timestamp for display, without raw ISO characters', () => {
+    const text = formatLocal('2026-10-30T20:00:00Z')
+
+    expect(text).toContain('2026')
+    expect(text).not.toMatch(/\dT\d|Z$/)
+  })
+})
+
+describe('GET /appointments', () => {
+  it('lists every appointment with UTC datetimes and links to agents and therapies', async () => {
+    const res = await request(app).get('/appointments')
+
+    expect(res.status).toBe(200)
+    expect(res.text).toContain('<h1>Appointments</h1>')
+    expect(res.text.match(/<tr id="appointment-\d+">/g)).toHaveLength(getAppointments().length)
+    for (const { startsAt, status, agent, therapy } of getAppointmentsWithDetails()) {
+      expect(res.text).toContain(`<time datetime="${startsAt}">${formatLocal(startsAt)}</time>`)
+      expect(res.text).toContain(`<a href="/agents#agent-${agent.id}">${agent.name}</a>`)
+      expect(res.text).toContain(`<a href="/therapies#therapy-${therapy.id}">${therapy.name}</a>`)
+      expect(res.text).toContain(`<td>${status}</td>`)
+    }
+  })
+
+  it('is a real page with an active nav link', async () => {
+    const res = await request(app).get('/appointments')
+
+    expect(res.text).not.toContain('Coming soon')
+    expect(res.text).toContain('href="/appointments" aria-current="page"')
+  })
+})
+
+describe('local time script', () => {
+  it('is loaded by the layout and served', async () => {
+    const page = await request(app).get('/appointments')
+    const script = await request(app).get('/js/local-time.js')
+
+    expect(page.text).toContain('<script src="/js/local-time.js" defer></script>')
+    expect(script.status).toBe(200)
+    expect(script.type).toMatch(/javascript/)
+  })
+})
+
 describe('GET /dashboard', () => {
   it('renders the dashboard heading', async () => {
     const res = await request(app).get('/dashboard')
@@ -247,10 +309,29 @@ describe('GET /dashboard', () => {
     expect(res.text).toContain('<a href="/ailments">View ailments</a>')
   })
 
-  it.each(placeholders)('has a $label panel with a coming-soon note', async ({ label }) => {
+  it('has a live Therapies panel with the count and a link', async () => {
     const res = await request(app).get('/dashboard')
 
-    expect(res.text).toMatch(new RegExp(`<article>\\s*<h2>${label}</h2>\\s*<p>Coming soon`))
+    expect(res.text).toContain(`${getTherapies().length} therapies are ready to help.`)
+    expect(res.text).toContain('<a href="/therapies">View therapies</a>')
+  })
+
+  it('has a live Appointments panel with the scheduled count and a link', async () => {
+    const res = await request(app).get('/dashboard')
+    const scheduled = getAppointments().filter(({ status }) => status === 'scheduled')
+
+    expect(res.text).toContain(`${scheduled.length} appointments are scheduled.`)
+    expect(res.text).toContain('<a href="/appointments">View appointments</a>')
+    expect(res.text).not.toContain('Coming soon')
+  })
+
+  it('lists only scheduled appointments, with UTC datetimes', async () => {
+    const res = await request(app).get('/dashboard')
+
+    for (const { startsAt, status } of getAppointments()) {
+      expect(res.text.includes(`<time datetime="${startsAt}">`)).toBe(status === 'scheduled')
+    }
+    expect(res.text).toContain('<a href="/appointments">View all appointments</a>')
   })
 })
 
