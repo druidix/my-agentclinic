@@ -2,6 +2,7 @@
 
 ## 2026-10-26
 
+- Phase 9: Ailments (#19) (f1d55bd)
 - Tech stack: persisted timestamps are UTC (#20) (4bd7163)
 - Bump actions/setup-node from 4.4.0 to 7.1.0 (#13) (174f33a)
 - Bump actions/checkout from 4.4.0 to 7.0.1 (#12) (88c7547)

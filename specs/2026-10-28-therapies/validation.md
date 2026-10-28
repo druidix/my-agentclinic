@@ -16,14 +16,14 @@ The feature is complete and mergeable when every item passes.
 - [x] The dashboard Therapies panel shows the count and links to `/therapies`; Appointments still says "coming soon".
 
 ## Browser, at about 375px, 768px, and 1280px
-- [ ] Both pages are readable, with no horizontal scrolling.
-- [ ] Nav links and the cross-links are easy to tap at 375px.
+- [x] Both pages are readable, with no horizontal scrolling.
+- [x] Nav links and the cross-links are easy to tap at 375px.
 
 ## Themes
-- [ ] The therapies page, ailments page, and dashboard look right in both light and dark themes.
+- [x] The therapies page, ailments page, and dashboard look right in both light and dark themes.
 
 ## Merge readiness
-- [ ] `specs/roadmap.md` shows Therapies as phase 10, marked done.
-- [ ] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
-- [ ] No `dist/` or `node_modules/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] `specs/roadmap.md` shows Therapies as phase 10, marked done.
+- [x] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
+- [x] No `dist/` or `node_modules/` committed.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.
