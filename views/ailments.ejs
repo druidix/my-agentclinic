@@ -4,13 +4,19 @@
 </hgroup>
 
 <% ailments.forEach(function (ailment) { %>
-<article>
+<article id="ailment-<%= ailment.id %>">
   <h2><%= ailment.name %></h2>
   <p><%= ailment.description %></p>
   <p>Agents with this ailment:</p>
   <ul>
     <% ailment.agents.forEach(function (agent) { %>
     <li><a href="/agents#agent-<%= agent.id %>"><%= agent.name %></a></li>
+    <% }) %>
+  </ul>
+  <p>Therapies that help:</p>
+  <ul>
+    <% ailment.therapies.forEach(function (therapy) { %>
+    <li><a href="/therapies#therapy-<%= therapy.id %>"><%= therapy.name %></a></li>
     <% }) %>
   </ul>
 </article>

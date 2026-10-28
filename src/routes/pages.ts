@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { getAgents } from '../data/agents'
 import { getAilments } from '../data/ailments'
+import { getTherapies } from '../data/therapies'
 import { sections } from '../sections'
 
 type Panel = {
@@ -19,6 +20,7 @@ function panelFor({ href, label, note, placeholder }: (typeof sections)[number])
   if (placeholder) return { label, note }
   if (href === '/agents') return { label, note: `${getAgents().length} agents are waiting for relief.`, href }
   if (href === '/ailments') return { label, note: `${getAilments().length} ailments are going around.`, href }
+  if (href === '/therapies') return { label, note: `${getTherapies().length} therapies are ready to help.`, href }
   return { label, note, href }
 }
 

@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import app from '../src/app'
 import { getAgents } from '../src/data/agents'
 import { getAilments, getAilmentsWithAgents } from '../src/data/ailments'
+import { getTherapies, getTherapiesForAilment, getTherapiesWithAilments } from '../src/data/therapies'
 import { activeHref, nav, sections } from '../src/sections'
 
 const placeholders = sections.filter(({ placeholder }) => placeholder)
@@ -37,6 +38,13 @@ describe('GET /health', () => {
 })
 
 describe('placeholder routes', () => {
+  it('has a live Therapies panel with the count and a link', async () => {
+    const res = await request(app).get('/dashboard')
+
+    expect(res.text).toContain(`${getTherapies().length} therapies are ready to help.`)
+    expect(res.text).toContain('<a href="/therapies">View therapies</a>')
+  })
+
   it.each(placeholders)('$href renders its title', async ({ href, label }) => {
     const res = await request(app).get(href)
 
@@ -122,7 +130,7 @@ describe('GET /ailments', () => {
 
     expect(res.status).toBe(200)
     expect(res.text).toContain('<h1>Ailments</h1>')
-    expect(res.text.match(/<article>/g)).toHaveLength(getAilments().length)
+    expect(res.text.match(/<article id="ailment-\d+">/g)).toHaveLength(getAilments().length)
     for (const { name, agents } of getAilmentsWithAgents()) {
       expect(res.text).toContain(`<h2>${name.replace(/"/g, '&#34;')}</h2>`)
       for (const { id, name: agentName } of agents) {
@@ -142,6 +150,77 @@ describe('GET /ailments', () => {
 
     for (const { id } of getAgents()) {
       expect(res.text).toContain(`<tr id="agent-${id}">`)
+    }
+  })
+})
+
+describe('getTherapies', () => {
+  it('returns therapies with every field filled and unique ids', () => {
+    const therapies = getTherapies()
+    expect(new Set(therapies.map(({ id }) => id)).size).toBe(therapies.length)
+    expect(therapies.length).toBeGreaterThan(0)
+    for (const { name, description, durationMinutes } of therapies) {
+      expect(name).not.toBe('')
+      expect(description).not.toBe('')
+      expect(Number.isInteger(durationMinutes) && durationMinutes > 0).toBe(true)
+    }
+  })
+
+  it('gives every therapy at least one real ailment, and every ailment a therapy', () => {
+    const ailmentIds = getAilments().map(({ id }) => id)
+    for (const { ailmentIds: ids } of getTherapies()) {
+      expect(ids.length).toBeGreaterThan(0)
+      for (const id of ids) expect(ailmentIds).toContain(id)
+    }
+    for (const id of ailmentIds) expect(getTherapiesForAilment(id).length).toBeGreaterThan(0)
+  })
+
+  it('joins each therapy to its ailment records', () => {
+    for (const { id, ailments } of getTherapiesWithAilments()) {
+      const source = getTherapies().find((therapy) => therapy.id === id)
+      expect(ailments.map((ailment) => ailment.id)).toEqual(source?.ailmentIds)
+    }
+  })
+
+  it('finds the therapies for an ailment', () => {
+    for (const ailment of getAilments()) {
+      for (const { ailmentIds } of getTherapiesForAilment(ailment.id)) expect(ailmentIds).toContain(ailment.id)
+    }
+  })
+})
+
+describe('GET /therapies', () => {
+  it('lists every therapy with its ailments linked to the ailments page', async () => {
+    const res = await request(app).get('/therapies')
+
+    expect(res.status).toBe(200)
+    expect(res.text).toContain('<h1>Therapies</h1>')
+    expect(res.text.match(/<article id="therapy-\d+">/g)).toHaveLength(getTherapies().length)
+    for (const { id, name, durationMinutes, ailments } of getTherapiesWithAilments()) {
+      expect(res.text).toContain(`<article id="therapy-${id}">`)
+      expect(res.text).toContain(`<h2>${name}</h2>`)
+      expect(res.text).toContain(`${durationMinutes} minutes`)
+      for (const ailment of ailments) {
+        expect(res.text).toContain(`<a href="/ailments#ailment-${ailment.id}">${ailment.name.replace(/"/g, '&#34;')}</a>`)
+      }
+    }
+  })
+
+  it('is a real page, not a placeholder', async () => {
+    const res = await request(app).get('/therapies')
+
+    expect(res.text).not.toContain('Coming soon')
+    expect(res.text).toContain('aria-current="page"')
+  })
+
+  it('links each ailment to its therapies', async () => {
+    const res = await request(app).get('/ailments')
+
+    for (const ailment of getAilments()) {
+      expect(res.text).toContain(`<article id="ailment-${ailment.id}">`)
+      for (const { id, name } of getTherapiesForAilment(ailment.id)) {
+        expect(res.text).toContain(`<a href="/therapies#therapy-${id}">${name}</a>`)
+      }
     }
   })
 })
