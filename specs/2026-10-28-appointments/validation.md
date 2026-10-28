@@ -16,15 +16,15 @@ The feature is complete and mergeable when every item passes.
 - [x] Each `<time>` element carries the UTC value in `datetime`; no UTC text is shown to the viewer.
 
 ## Browser, at about 375px, 768px, and 1280px
-- [ ] The appointments page and dashboard are readable, with no horizontal page scrolling.
-- [ ] Nav links and cross-links are easy to tap at 375px.
-- [ ] Times display in your local time zone, with no UTC shown.
+- [x] The appointments page and dashboard are readable, with no horizontal page scrolling.
+- [x] Nav links and cross-links are easy to tap at 375px.
+- [x] Times display in your local time zone, with no UTC shown.
 
 ## Themes
-- [ ] The appointments page and dashboard look right in both light and dark themes.
+- [x] The appointments page and dashboard look right in both light and dark themes.
 
 ## Merge readiness
-- [ ] `specs/roadmap.md` shows Appointments, view as phase 11, marked done.
-- [ ] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
-- [ ] No `dist/` or `node_modules/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] `specs/roadmap.md` shows Appointments, view as phase 11, marked done.
+- [x] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
+- [x] No `dist/` or `node_modules/` committed.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.
