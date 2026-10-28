@@ -5,6 +5,7 @@ import expressLayouts from 'express-ejs-layouts'
 import helmet from 'helmet'
 import agents from './routes/agents'
 import ailments from './routes/ailments'
+import therapies from './routes/therapies'
 import pages from './routes/pages'
 import placeholders from './routes/placeholders'
 import { activeHref, nav } from './sections'
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 app.use(pages)
 app.use(agents)
 app.use(ailments)
+app.use(therapies)
 app.use(placeholders)
 
 app.use((_req, res) => {

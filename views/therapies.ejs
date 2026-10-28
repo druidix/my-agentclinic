@@ -1,0 +1,18 @@
+<hgroup>
+  <h1><%= title %></h1>
+  <p>Treatments on offer, and the ailments they help.</p>
+</hgroup>
+
+<% therapies.forEach(function (therapy) { %>
+<article id="therapy-<%= therapy.id %>">
+  <h2><%= therapy.name %></h2>
+  <p><%= therapy.description %></p>
+  <p>Session length: <%= therapy.durationMinutes %> minutes</p>
+  <p>Treats:</p>
+  <ul>
+    <% therapy.ailments.forEach(function (ailment) { %>
+    <li><a href="/ailments#ailment-<%= ailment.id %>"><%= ailment.name %></a></li>
+    <% }) %>
+  </ul>
+</article>
+<% }) %>
