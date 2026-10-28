@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-28
+
+- Phase 10: Therapies (#21) (67ad675)
+
 ## 2026-10-26
 
 - Phase 9: Ailments (#19) (f1d55bd)

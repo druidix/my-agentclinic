@@ -12,3 +12,29 @@
   </article>
   <% }) %>
 </div>
+
+<section>
+  <h2>Scheduled appointments</h2>
+  <div class="overflow-auto">
+    <table>
+      <caption>Upcoming sessions</caption>
+      <thead>
+        <tr>
+          <th scope="col">When</th>
+          <th scope="col">Agent</th>
+          <th scope="col">Therapy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% scheduled.forEach(function (appointment) { %>
+        <tr>
+          <th scope="row"><time datetime="<%= appointment.startsAt %>"><%= appointment.when %></time></th>
+          <td><a href="/agents#agent-<%= appointment.agent.id %>"><%= appointment.agent.name %></a></td>
+          <td><a href="/therapies#therapy-<%= appointment.therapy.id %>"><%= appointment.therapy.name %></a></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/appointments">View all appointments</a></p>
+</section>
