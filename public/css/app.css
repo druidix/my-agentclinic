@@ -42,6 +42,9 @@ header nav a[aria-current="page"] {
   border-radius: var(--pico-border-radius);
 }
 
+/* Dashboard cards: a smaller heading so "Appointments" fits on one line in a four-column grid. */
+.panels h2 { font-size: 1.5rem; }
+
 /* Footer. */
 body > footer {
   color: var(--pico-muted-color);
