@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-03
+
+- Phase 12: Appointments, booking (#23) (f8502ef)
+
 ## 2026-10-29
 
 - Set up agent skills config (#24) (d151d94)

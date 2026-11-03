@@ -10,7 +10,7 @@
 
 ## Getting started
 
-Requires Node 22 or later.
+Requires Node 22.13 or later (the database uses the built-in `node:sqlite`).
 
 ```bash
 npm install
@@ -23,9 +23,11 @@ npm run smoke          # start the built app and check /health and the Pico CSS 
 
 Set `PORT` to use a different port, for example `PORT=4000 npm start`.
 
+Data lives in SQLite at `data/agentclinic.db`, which is created and seeded on first start (delete it to reset). Set `DATABASE_PATH` to use another file. Node prints an `ExperimentalWarning` for `node:sqlite`; that is expected.
+
 ## Project layout
 
-- `src/`: the Express app (`app.ts`), routers (`routes/`), and the nav and sections (`sections.ts`).
+- `src/`: the Express app (`app.ts`), routers (`routes/`), the nav and sections (`sections.ts`), and the database (`db.ts`, with data modules and seed data in `data/`).
 - `views/`: EJS templates and partials.
 - `public/css/app.css`: our CSS; [Pico CSS](https://picocss.com) is served from `node_modules` at `/vendor/pico`.
 - `tests/`: Vitest tests.
