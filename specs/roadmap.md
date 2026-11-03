@@ -15,4 +15,4 @@ Very small phases, each leaving the app runnable.
 11. **Appointments, view (done):** list scheduled appointments on the dashboard.
 12. **Appointments, booking (done):** a form for an agent to book a therapy.
 13. **Persistence (done):** move the data to SQLite.
-14. **Polish:** accessibility and marketing-quality visuals.
+14. **Polish (done):** accessibility and marketing-quality visuals.
