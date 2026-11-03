@@ -29,6 +29,7 @@ app.set('layout', 'layout')
 app.use(expressLayouts)
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(rootDir, 'public')))
+app.use('/vendor/htmx', express.static(path.join(rootDir, 'node_modules', 'htmx.org', 'dist')))
 app.use('/vendor/pico', express.static(path.join(rootDir, 'node_modules', '@picocss', 'pico', 'css')))
 
 app.use((req, res, next) => {

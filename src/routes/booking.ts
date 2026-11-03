@@ -36,13 +36,18 @@ router.get('/appointments/new', (_req, res) => {
 
 router.post('/appointments', sameOrigin, (req, res) => {
   const body: Record<string, unknown> = req.body ?? {}
+  const htmx = req.get('HX-Request') === 'true'
   const result = validateBooking(body, new Date())
   if (!result.ok) {
     const values = { agentId: field(body.agentId), therapyId: field(body.therapyId), startsAt: field(body.startsAt) }
-    res.status(422).render('book', formView(values, result.errors))
+    const view = formView(values, result.errors)
+    // htmx swaps just the form; a plain post gets the whole page.
+    res.status(422).render(htmx ? 'partials/book-form' : 'book', htmx ? { ...view, layout: false } : view)
     return
   }
-  res.redirect(303, `/appointments?booked=${addAppointment(result.value).id}`)
+  const url = `/appointments?booked=${addAppointment(result.value).id}`
+  if (htmx) res.set('HX-Redirect', url).status(204).end()
+  else res.redirect(303, url)
 })
 
 export default router

@@ -16,7 +16,7 @@ describe('GET /', () => {
 
     expect(res.status).toBe(200)
     expect(res.type).toBe('text/html')
-    expect(res.text).toContain('Hello AgentClinic')
+    expect(res.text).toContain('<h1>Relief for AI agents, from their humans.</h1>')
     expect(res.text).toContain('<header class="container">')
     expect(res.text).toContain('<nav aria-label="Main">')
     expect(res.text).toContain('<footer class="container">')
@@ -264,7 +264,7 @@ describe('GET /appointments', () => {
       expect(res.text).toContain(`<time datetime="${startsAt}">${formatLocal(startsAt)}</time>`)
       expect(res.text).toContain(`<a href="/agents#agent-${agent.id}">${agent.name}</a>`)
       expect(res.text).toContain(`<a href="/therapies#therapy-${therapy.id}">${therapy.name}</a>`)
-      expect(res.text).toContain(`<td>${status}</td>`)
+      expect(res.text).toContain(`<td><span class="badge badge-${status}">${status}</span></td>`)
     }
   })
 

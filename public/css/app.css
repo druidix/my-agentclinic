@@ -1,5 +1,49 @@
 /* Custom CSS: only what Pico CSS does not cover. */
 
+/* Accent color: teal, overriding Pico's primary variables for the light and dark themes. */
+:root:not([data-theme="dark"]),
+[data-theme="light"] {
+  --pico-primary: #0f766e;
+  --pico-primary-background: #0f766e;
+  --pico-primary-underline: rgba(15, 118, 110, 0.5);
+  --pico-primary-hover: #115e59;
+  --pico-primary-hover-background: #115e59;
+  --pico-primary-hover-underline: #115e59;
+  --pico-primary-focus: rgba(15, 118, 110, 0.35);
+  --pico-primary-inverse: #fff;
+  --badge-scheduled-bg: #ccfbf1; --badge-scheduled-fg: #115e59;
+  --badge-completed-bg: #e5e7eb; --badge-completed-fg: #374151;
+  --badge-cancelled-bg: #fee2e2; --badge-cancelled-fg: #991b1b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --pico-primary: #5eead4;
+    --pico-primary-background: #0f766e;
+    --pico-primary-underline: rgba(94, 234, 212, 0.5);
+    --pico-primary-hover: #99f6e4;
+    --pico-primary-hover-background: #115e59;
+    --pico-primary-hover-underline: #99f6e4;
+    --pico-primary-focus: rgba(94, 234, 212, 0.35);
+    --pico-primary-inverse: #fff;
+    --badge-scheduled-bg: #134e4a; --badge-scheduled-fg: #99f6e4;
+    --badge-completed-bg: #374151; --badge-completed-fg: #e5e7eb;
+    --badge-cancelled-bg: #7f1d1d; --badge-cancelled-fg: #fecaca;
+  }
+}
+[data-theme="dark"] {
+  --pico-primary: #5eead4;
+  --pico-primary-background: #0f766e;
+  --pico-primary-underline: rgba(94, 234, 212, 0.5);
+  --pico-primary-hover: #99f6e4;
+  --pico-primary-hover-background: #115e59;
+  --pico-primary-hover-underline: #99f6e4;
+  --pico-primary-focus: rgba(94, 234, 212, 0.35);
+  --pico-primary-inverse: #fff;
+  --badge-scheduled-bg: #134e4a; --badge-scheduled-fg: #99f6e4;
+  --badge-completed-bg: #374151; --badge-completed-fg: #e5e7eb;
+  --badge-cancelled-bg: #7f1d1d; --badge-cancelled-fg: #fecaca;
+}
+
 /* Sticky footer: the page fills the viewport and main takes the spare space. */
 body {
   display: flex;
@@ -13,11 +57,15 @@ body > main { flex: 1; }
 header nav { flex-wrap: wrap; }
 .nav-links { flex-wrap: wrap; }
 
-/* Brand: a logo placeholder, larger than the nav links. */
+/* Brand: the logo mark and wordmark, larger than the nav links. */
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.75rem;
   line-height: 1.2;
 }
+.logo { width: 2rem; height: 2rem; flex: none; color: var(--pico-primary-background); }
 
 /* Skip link: hidden until it receives keyboard focus. */
 .skip-link {
@@ -46,6 +94,29 @@ header nav a[aria-current="page"] {
 .panels { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 .panels h2 { font-size: 1.25rem; }
 
+/* Cards: an accent edge, and a small lift on the clickable ones (dashboard and home). */
+main article { border-top: 4px solid var(--pico-primary-background); }
+.panels article { transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+.panels article:hover { transform: translateY(-2px); }
+
+/* Home hero. */
+.hero { padding: 2rem 0 1rem; text-align: center; }
+.hero h1 { font-size: clamp(1.75rem, 5vw, 3rem); }
+.hero p { margin-inline: auto; max-width: 40rem; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+/* Status badges: the status word is always shown, so colour is never the only signal. */
+.badge {
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.badge-scheduled { background: var(--badge-scheduled-bg); color: var(--badge-scheduled-fg); }
+.badge-completed { background: var(--badge-completed-bg); color: var(--badge-completed-fg); }
+.badge-cancelled { background: var(--badge-cancelled-bg); color: var(--badge-cancelled-fg); }
+
 /* Footer. */
 body > footer {
   color: var(--pico-muted-color);
@@ -67,4 +138,23 @@ body > footer {
   }
 
   body > footer { font-size: 0.85rem; text-align: center; overflow-wrap: anywhere; }
+}
+
+/* Respect the system "reduce motion" setting. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .panels article:hover { transform: none; }
+}
+
+/* Print: just the content, black on white. */
+@media print {
+  .skip-link, header, body > footer, a[role="button"] { display: none !important; }
+  body { color: #000; background: #fff; }
+  article { box-shadow: none; border: 1px solid #000; break-inside: avoid; }
+  .overflow-auto { overflow: visible; }
+  .badge { background: none !important; color: #000 !important; border: 1px solid #000; }
 }

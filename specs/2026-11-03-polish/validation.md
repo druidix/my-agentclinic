@@ -3,19 +3,19 @@
 The feature is complete and mergeable when every item passes.
 
 ## Automated
-- [ ] `npm test` passes, including the axe test over every page and the error state, with zero violations.
-- [ ] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
+- [x] `npm test` passes, including the axe test over every page and the error state, with zero violations.
+- [x] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
 - [ ] The `build-and-test` CI check passes on the PR.
 
 ## Behaviour
-- [ ] The home page has the hero, its two buttons, and four cards that link to the right pages.
+- [x] The home page has the hero, its two buttons, and four cards that link to the right pages.
 - [ ] The logo shows next to the wordmark, and the favicon loads with no `favicon.ico` 404 in your browser.
-- [ ] Appointment statuses show as badges with the status word as text.
+- [x] Appointment statuses show as badges with the status word as text.
 - [ ] Dates include the weekday and read the same on the server and in the browser.
 - [ ] Booking works with HTMX: errors appear in place, success goes to the confirmation, and the local-time-to-UTC conversion still works after an error.
 - [ ] Booking still works with JavaScript off (plain post and redirect).
-- [ ] Cross-origin posts are still rejected, including HTMX ones.
-- [ ] The recorded contrast ratios meet WCAG AA in both themes.
+- [x] Cross-origin posts are still rejected, including HTMX ones.
+- [x] The recorded contrast ratios meet WCAG AA in both themes.
 
 ## Browser, at about 375px, 768px, and 1280px
 - [ ] Every page looks right, with no horizontal page scrolling.

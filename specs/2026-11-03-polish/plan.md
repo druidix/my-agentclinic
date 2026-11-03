@@ -10,11 +10,11 @@
 1. Home page (`views/index.ejs`): a hero with the tagline and two buttons (dashboard, book an appointment), and a short "how it works" row of cards (agents, ailments, therapies, appointments) linking to each page.
 2. Logo and favicon: an inline SVG mark in `views/partials/header.ejs` next to the "AgentClinic" wordmark (decorative, `aria-hidden`), and `public/favicon.svg` linked from the layout with `<link rel="icon">`, which also removes the `favicon.ico` 404 in browsers that honor the link.
 3. Accent color: override Pico's primary color variables in `public/css/app.css` for light and dark themes, with every pairing at WCAG AA or better.
-4. Richer cards: a subtle accent edge, consistent spacing, and a small hover lift on the dashboard and ailment cards.
+4. Richer cards: a subtle accent edge, consistent spacing, and a small hover lift on the clickable cards (dashboard and home).
 5. Pico stays the base; the custom CSS stays small and uses Pico's variables.
 
 ## 3. Appointment status badges and dates
-1. Show status as a badge (`scheduled`, `completed`, `cancelled`) that carries the word as text as well as color, on `/appointments` and in the booking confirmation.
+1. Show status as a badge (`scheduled`, `completed`, `cancelled`) that carries the word as text as well as color, on `/appointments`.
 2. Tidy dates: include the weekday (for example `Thu, Nov 5, 2026, 10:00 AM`) in `formatLocal()` and in `public/js/local-time.js`, so server and browser render the same text. Storage stays UTC.
 
 ## 4. Reduced motion and print
@@ -22,7 +22,7 @@
 2. `@media print`: hide the header nav, footer, skip link, and buttons; use black on white; show full tables so the schedule prints cleanly.
 
 ## 5. HTMX for booking
-1. Add `htmx.org` as a dependency, served from `node_modules` at `/vendor/htmx` (like Pico), loaded with `defer` only on the booking page. `allowEval` is switched off through an `htmx-config` meta tag, so the CSP stays unchanged.
+1. Add `htmx.org` as a dependency, served from `node_modules` at `/vendor/htmx` (like Pico), loaded with `defer` only on the booking page. A small `public/js/htmx-config.js` switches `allowEval` off and lets `422` responses swap, so the CSP stays unchanged.
 2. Move the form into `views/partials/book-form.ejs`. The form posts with `hx-post="/appointments"` and swaps itself (`hx-target`, `hx-swap="outerHTML"`); without JavaScript it is still a normal form post.
 3. In `src/routes/booking.ts`, when the `HX-Request` header is present: a validation error returns the form partial alone with status `422` (htmx is configured to swap `422` responses), and success returns `204` with an `HX-Redirect` header to `/appointments?booked=<id>`. Requests without the header behave exactly as today (full page, `303`).
 4. The same-origin check still guards every `POST`, htmx or not.
