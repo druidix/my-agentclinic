@@ -3,6 +3,11 @@
   <p>Every session at the clinic, in your local time.</p>
 </hgroup>
 
+<% if (booked) { %>
+<p role="status">Booked: <%= booked.agent.name %> with <%= booked.therapy.name %> on <time datetime="<%= booked.startsAt %>"><%= booked.when %></time>.</p>
+<% } %>
+<p><a href="/appointments/new" role="button">Book an appointment</a></p>
+
 <div class="overflow-auto">
   <table>
     <caption>Appointments, soonest first</caption>

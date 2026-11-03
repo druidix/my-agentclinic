@@ -1,7 +1,12 @@
 # Changelog
 
+## 2026-10-29
+
+- Set up agent skills config (#24) (d151d94)
+
 ## 2026-10-28
 
+- Phase 11: Appointments, view (#22) (f67eecb)
 - Phase 10: Therapies (#21) (67ad675)
 
 ## 2026-10-26
