@@ -5,7 +5,7 @@ The feature is complete and mergeable when every item passes.
 ## Automated
 - [x] `npm test` passes, including the axe test over every page and the error state, with zero violations.
 - [x] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
-- [ ] The `build-and-test` CI check passes on the PR.
+- [x] The `build-and-test` CI check passes on the PR.
 
 ## Behaviour
 - [x] The home page has the hero, its two buttons, and four cards that link to the right pages.
