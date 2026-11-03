@@ -8,6 +8,10 @@
 - Susan in product has a set of features about agents and their ailments, therapies, and booking appointments.
 - Steve in marketing wants an attractive site that works well with a modern browser.
 
+## Status
+
+The MVP is complete: agents, ailments, therapies, appointment booking, and a staff dashboard, stored in SQLite. See `specs/roadmap.md`.
+
 ## Getting started
 
 Requires Node 22.13 or later (the database uses the built-in `node:sqlite`).

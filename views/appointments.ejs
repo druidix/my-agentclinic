@@ -25,7 +25,7 @@
         <th scope="row"><time datetime="<%= appointment.startsAt %>"><%= appointment.when %></time></th>
         <td><a href="/agents#agent-<%= appointment.agent.id %>"><%= appointment.agent.name %></a></td>
         <td><a href="/therapies#therapy-<%= appointment.therapy.id %>"><%= appointment.therapy.name %></a></td>
-        <td><%= appointment.status %></td>
+        <td><span class="badge badge-<%= appointment.status %>"><%= appointment.status %></span></td>
       </tr>
       <% }) %>
     </tbody>

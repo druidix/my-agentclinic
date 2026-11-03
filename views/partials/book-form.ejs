@@ -1,0 +1,36 @@
+<div id="booking">
+<% if (Object.keys(errors).length) { %>
+<p role="alert">Please fix the highlighted fields.</p>
+<% } %>
+<noscript><p>JavaScript is needed to choose a time.</p></noscript>
+
+<form method="post" action="/appointments" hx-post="/appointments" hx-target="#booking" hx-swap="outerHTML">
+  <label for="agentId">Agent
+    <select id="agentId" name="agentId" required <% if (errors.agentId) { %>aria-invalid="true" aria-describedby="agentId-error"<% } %>>
+      <option value="">Choose an agent</option>
+      <% agents.forEach(function (agent) { %>
+      <option value="<%= agent.id %>" <%= values.agentId === String(agent.id) ? 'selected' : '' %>><%= agent.name %></option>
+      <% }) %>
+    </select>
+    <% if (errors.agentId) { %><small id="agentId-error"><%= errors.agentId %></small><% } %>
+  </label>
+
+  <label for="therapyId">Therapy
+    <select id="therapyId" name="therapyId" required <% if (errors.therapyId) { %>aria-invalid="true" aria-describedby="therapyId-error"<% } %>>
+      <option value="">Choose a therapy</option>
+      <% therapies.forEach(function (therapy) { %>
+      <option value="<%= therapy.id %>" <%= values.therapyId === String(therapy.id) ? 'selected' : '' %>><%= therapy.name %> (<%= therapy.durationMinutes %> min)</option>
+      <% }) %>
+    </select>
+    <% if (errors.therapyId) { %><small id="therapyId-error"><%= errors.therapyId %></small><% } %>
+  </label>
+
+  <label for="when">Date and time
+    <input id="when" type="datetime-local" required <% if (errors.startsAt) { %>aria-invalid="true" aria-describedby="startsAt-error"<% } %>>
+    <% if (errors.startsAt) { %><small id="startsAt-error"><%= errors.startsAt %></small><% } %>
+  </label>
+  <input id="startsAt" type="hidden" name="startsAt" value="<%= values.startsAt %>">
+
+  <button type="submit">Book appointment</button>
+</form>
+</div>
