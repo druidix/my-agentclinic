@@ -17,15 +17,15 @@ The feature is complete and mergeable when every item passes.
 - [x] An unknown or non-numeric `booked` value shows no confirmation.
 
 ## Browser, at about 375px, 768px, and 1280px
-- [ ] The form and the confirmation are readable, with no horizontal scrolling, and fields and the button are easy to tap at 375px.
-- [ ] Booking a time shows it back in your local time zone, with no UTC shown.
-- [ ] Error states are clear and keyboard-accessible (labels, focus, and messages).
+- [x] The form and the confirmation are readable, with no horizontal scrolling, and fields and the button are easy to tap at 375px.
+- [x] Booking a time shows it back in your local time zone, with no UTC shown.
+- [x] Error states are clear and keyboard-accessible (labels, focus, and messages).
 
 ## Themes
-- [ ] The form, errors, and confirmation look right in both light and dark themes.
+- [x] The form, errors, and confirmation look right in both light and dark themes.
 
 ## Merge readiness
-- [ ] `specs/roadmap.md` shows Appointments, booking as phase 12, marked done.
-- [ ] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
-- [ ] No `dist/` or `node_modules/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] `specs/roadmap.md` shows Appointments, booking as phase 12, marked done.
+- [x] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
+- [x] No `dist/` or `node_modules/` committed.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.
