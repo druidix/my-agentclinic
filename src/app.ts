@@ -16,7 +16,13 @@ const rootDir = path.join(__dirname, '..')
 
 app.disable('x-powered-by')
 // Demos run over plain http on localhost, so don't upgrade subresources to https.
-app.use(helmet({ contentSecurityPolicy: { useDefaults: true, directives: { 'upgrade-insecure-requests': null } } }))
+// no-referrer (helmet's default) makes browsers send "Origin: null" on form posts, which the same-origin check rejects.
+app.use(
+  helmet({
+    contentSecurityPolicy: { useDefaults: true, directives: { 'upgrade-insecure-requests': null } },
+    referrerPolicy: { policy: 'same-origin' },
+  }),
+)
 app.set('view engine', 'ejs')
 app.set('views', path.join(rootDir, 'views'))
 app.set('layout', 'layout')

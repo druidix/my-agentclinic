@@ -108,6 +108,16 @@ describe('POST /appointments', () => {
   })
 })
 
+describe('referrer policy', () => {
+  it('lets browsers send a real Origin on form posts, and rejects the literal "null" origin', async () => {
+    const page = await request(app).get('/appointments/new')
+    const nullOrigin = await request(app).post('/appointments').type('form').set('Origin', 'null').send(valid)
+
+    expect(page.headers['referrer-policy']).toBe('same-origin')
+    expect(nullOrigin.status).toBe(403)
+  })
+})
+
 describe('GET /appointments?booked', () => {
   it.each(['999', 'abc', ''])('shows no confirmation for %j', async (booked) => {
     const res = await request(app).get('/appointments').query({ booked })
