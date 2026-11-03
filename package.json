@@ -13,7 +13,7 @@
     "smoke": "bash scripts/smoke.sh"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.13"
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",

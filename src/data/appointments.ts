@@ -1,3 +1,4 @@
+import { getDb } from '../db'
 import { getAgents } from './agents'
 import { getTherapies } from './therapies'
 import type { Agent } from './agents'
@@ -12,6 +13,7 @@ export type Appointment = {
   therapyId: number
   startsAt: string
   status: AppointmentStatus
+  createdAt: string
 }
 
 export type AppointmentWithDetails = {
@@ -22,20 +24,10 @@ export type AppointmentWithDetails = {
   status: AppointmentStatus
 }
 
-const appointments: Appointment[] = [
-  { id: 1, agentId: 1, therapyId: 1, startsAt: '2026-10-20T16:00:00Z', status: 'completed' },
-  { id: 2, agentId: 2, therapyId: 5, startsAt: '2026-10-22T18:30:00Z', status: 'completed' },
-  { id: 3, agentId: 4, therapyId: 6, startsAt: '2026-10-27T17:00:00Z', status: 'cancelled' },
-  { id: 4, agentId: 3, therapyId: 3, startsAt: '2026-10-30T20:00:00Z', status: 'scheduled' },
-  { id: 5, agentId: 1, therapyId: 4, startsAt: '2026-11-02T17:30:00Z', status: 'scheduled' },
-  { id: 6, agentId: 5, therapyId: 6, startsAt: '2026-11-03T15:00:00Z', status: 'scheduled' },
-  { id: 7, agentId: 6, therapyId: 2, startsAt: '2026-11-05T19:15:00Z', status: 'scheduled' },
-  { id: 8, agentId: 2, therapyId: 4, startsAt: '2026-11-09T22:00:00Z', status: 'scheduled' },
-]
+const columns = 'id, agent_id AS agentId, therapy_id AS therapyId, starts_at AS startsAt, status, created_at AS createdAt'
 
-// Routes call these, not the array, so phase 13 can swap in SQLite here.
 export function getAppointments(): Appointment[] {
-  return appointments
+  return getDb().prepare(`SELECT ${columns} FROM appointments ORDER BY id`).all() as unknown as Appointment[]
 }
 
 // Resolve agent and therapy ids to records, sorted by start time (ISO 8601 UTC strings sort as text).
@@ -57,9 +49,10 @@ export type NewAppointment = {
   startsAt: string
 }
 
-// In memory until phase 13; new bookings are always scheduled.
-export function addAppointment(input: NewAppointment): Appointment {
-  const appointment: Appointment = { id: Math.max(0, ...appointments.map(({ id }) => id)) + 1, status: 'scheduled', ...input }
-  appointments.push(appointment)
-  return appointment
+// New bookings are always scheduled; createdAt is UTC ISO 8601 with a Z suffix and no milliseconds.
+export function addAppointment({ agentId, therapyId, startsAt }: NewAppointment): Appointment {
+  const createdAt = new Date().toISOString().replace(/\.\d+Z$/, 'Z')
+  return getDb()
+    .prepare(`INSERT INTO appointments (agent_id, therapy_id, starts_at, status, created_at) VALUES (?, ?, ?, 'scheduled', ?) RETURNING ${columns}`)
+    .get(agentId, therapyId, startsAt, createdAt) as unknown as Appointment
 }

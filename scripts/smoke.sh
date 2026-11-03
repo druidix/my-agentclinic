@@ -3,7 +3,8 @@
 set -euo pipefail
 
 port="${PORT:-3100}"
-PORT="$port" node dist/index.js &
+db="$(mktemp -d)/smoke.db"
+PORT="$port" DATABASE_PATH="$db" node dist/index.js &
 pid=$!
 trap 'kill "$pid" 2>/dev/null || true' EXIT
 

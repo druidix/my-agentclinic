@@ -3,8 +3,8 @@
 The feature is complete and mergeable when every item passes.
 
 ## Automated
-- [ ] `npm test` passes, including the existing tests against an in-memory database and the new persistence, constraint, and UTC tests.
-- [ ] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
+- [x] `npm test` passes, including the existing tests against an in-memory database and the new persistence, constraint, and UTC tests.
+- [x] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
 - [ ] The `build-and-test` CI check passes on the PR, on Node 22.
 
 ## Behaviour
@@ -12,8 +12,8 @@ The feature is complete and mergeable when every item passes.
 - [ ] Restarting the server does not duplicate or reset the data.
 - [ ] A booking made before a restart is still on `/appointments` and the dashboard afterwards.
 - [ ] Deleting the database file and restarting restores the seed data.
-- [ ] Every stored `starts_at` and `created_at` is ISO 8601 UTC ending in `Z`, and the database rejects malformed ones, bad statuses, and unknown agent or therapy ids.
-- [ ] Tests and the smoke script do not touch `data/agentclinic.db`, and `data/` is git-ignored.
+- [x] Every stored `starts_at` and `created_at` is ISO 8601 UTC ending in `Z`, and the database rejects malformed ones, bad statuses, and unknown agent or therapy ids.
+- [x] Tests and the smoke script do not touch `data/agentclinic.db`, and `data/` is git-ignored.
 
 ## Browser
 - [ ] The agents, ailments, therapies, appointments, and dashboard pages look and behave as before (no visible change).
