@@ -50,3 +50,16 @@ export function getAppointmentsWithDetails(): AppointmentWithDetails[] {
     })
     .sort((a, b) => a.startsAt.localeCompare(b.startsAt))
 }
+
+export type NewAppointment = {
+  agentId: number
+  therapyId: number
+  startsAt: string
+}
+
+// In memory until phase 13; new bookings are always scheduled.
+export function addAppointment(input: NewAppointment): Appointment {
+  const appointment: Appointment = { id: Math.max(0, ...appointments.map(({ id }) => id)) + 1, status: 'scheduled', ...input }
+  appointments.push(appointment)
+  return appointment
+}

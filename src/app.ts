@@ -7,6 +7,7 @@ import agents from './routes/agents'
 import ailments from './routes/ailments'
 import therapies from './routes/therapies'
 import pages from './routes/pages'
+import booking from './routes/booking'
 import appointments from './routes/appointments'
 import { activeHref, nav } from './sections'
 
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(rootDir, 'views'))
 app.set('layout', 'layout')
 app.use(expressLayouts)
+app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(rootDir, 'public')))
 app.use('/vendor/pico', express.static(path.join(rootDir, 'node_modules', '@picocss', 'pico', 'css')))
 
@@ -33,6 +35,7 @@ app.use(pages)
 app.use(agents)
 app.use(ailments)
 app.use(therapies)
+app.use(booking)
 app.use(appointments)
 
 app.use((_req, res) => {

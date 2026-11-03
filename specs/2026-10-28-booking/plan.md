@@ -2,7 +2,7 @@
 
 ## 1. Data
 1. Add `addAppointment(input)` to `src/data/appointments.ts`. It takes a standalone `NewAppointment` type (`agentId`, `therapyId`, `startsAt`), assigns the next id and status `scheduled`, stores it, and returns the new `Appointment`. Routes call only the data functions, so phase 13 can swap in SQLite.
-2. Add `getAppointment(id)` for the confirmation message.
+2. The confirmation finds the booked appointment in the existing joined list, so no `getAppointment(id)` is needed.
 
 ## 2. Validation
 1. Add `src/booking.ts` with `validateBooking(body, now)`, returning either a clean `NewAppointment` or a list of field errors, as standalone types (`BookingErrors`, `BookingResult`).
