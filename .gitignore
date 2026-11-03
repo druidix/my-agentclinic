@@ -10,6 +10,9 @@ yarn-error.log*
 
 .vscode/*
 
+# Claude Code local settings and state
+.claude/
+
 /dist
 .env*
 .DS_Store

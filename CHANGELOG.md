@@ -2,6 +2,7 @@
 
 ## 2026-11-03
 
+- Phase 14: Polish (#26) (9c4b251)
 - Phase 13: Persistence (#25) (81e825a)
 - Phase 12: Appointments, booking (#23) (f8502ef)
 
