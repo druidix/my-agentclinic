@@ -8,20 +8,20 @@ The feature is complete and mergeable when every item passes.
 - [ ] The `build-and-test` CI check passes on the PR, on Node 22.
 
 ## Behaviour
-- [ ] A fresh start creates `data/agentclinic.db` with the schema and the seed data; every page shows the same content as before.
-- [ ] Restarting the server does not duplicate or reset the data.
-- [ ] A booking made before a restart is still on `/appointments` and the dashboard afterwards.
-- [ ] Deleting the database file and restarting restores the seed data.
+- [x] A fresh start creates `data/agentclinic.db` with the schema and the seed data; every page shows the same content as before.
+- [x] Restarting the server does not duplicate or reset the data.
+- [x] A booking made before a restart is still on `/appointments` and the dashboard afterwards.
+- [x] Deleting the database file and restarting restores the seed data.
 - [x] Every stored `starts_at` and `created_at` is ISO 8601 UTC ending in `Z`, and the database rejects malformed ones, bad statuses, and unknown agent or therapy ids.
 - [x] Tests and the smoke script do not touch `data/agentclinic.db`, and `data/` is git-ignored.
 
 ## Browser
-- [ ] The agents, ailments, therapies, appointments, and dashboard pages look and behave as before (no visible change).
-- [ ] Booking still works, and the new appointment shows in your local time zone.
+- [x] The agents, ailments, therapies, appointments, and dashboard pages look and behave as before (no visible change).
+- [x] Booking still works, and the new appointment shows in your local time zone.
 
 ## Merge readiness
-- [ ] `specs/roadmap.md` shows Persistence as phase 13, marked done.
-- [ ] `specs/tech-stack.md` and `README.md` describe SQLite, `node:sqlite`, and `DATABASE_PATH`.
-- [ ] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
-- [ ] No `dist/`, `node_modules/`, or `data/` committed.
-- [ ] Branch is up to date with `main`, and the PR description links to these specs.
+- [x] `specs/roadmap.md` shows Persistence as phase 13, marked done.
+- [x] `specs/tech-stack.md` and `README.md` describe SQLite, `node:sqlite`, and `DATABASE_PATH`.
+- [x] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
+- [x] No `dist/`, `node_modules/`, or `data/` committed.
+- [x] Branch is up to date with `main`, and the PR description links to these specs.
