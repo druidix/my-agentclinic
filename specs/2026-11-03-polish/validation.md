@@ -1,0 +1,34 @@
+# Validation: Polish
+
+The feature is complete and mergeable when every item passes.
+
+## Automated
+- [ ] `npm test` passes, including the axe test over every page and the error state, with zero violations.
+- [ ] `npm run typecheck`, `npm run build`, and `npm run smoke` pass.
+- [ ] The `build-and-test` CI check passes on the PR.
+
+## Behaviour
+- [ ] The home page has the hero, its two buttons, and four cards that link to the right pages.
+- [ ] The logo shows next to the wordmark, and the favicon loads with no `favicon.ico` 404 in your browser.
+- [ ] Appointment statuses show as badges with the status word as text.
+- [ ] Dates include the weekday and read the same on the server and in the browser.
+- [ ] Booking works with HTMX: errors appear in place, success goes to the confirmation, and the local-time-to-UTC conversion still works after an error.
+- [ ] Booking still works with JavaScript off (plain post and redirect).
+- [ ] Cross-origin posts are still rejected, including HTMX ones.
+- [ ] The recorded contrast ratios meet WCAG AA in both themes.
+
+## Browser, at about 375px, 768px, and 1280px
+- [ ] Every page looks right, with no horizontal page scrolling.
+- [ ] Everything works with the keyboard only, focus is always visible, and the order makes sense.
+- [ ] A screen-reader pass of the booking form and the appointments table makes sense.
+- [ ] Pages stay usable at 200% zoom.
+- [ ] With "reduce motion" on in your system settings, nothing animates; print preview of `/appointments` is clean.
+
+## Themes
+- [ ] Every page, the badges, and the cards look right in both light and dark themes.
+
+## Merge readiness
+- [ ] `specs/roadmap.md` shows Polish as phase 14, marked done, and `README.md` says the MVP is complete.
+- [ ] `CHANGELOG.md` is updated with `/changelog`, and every hash exists in `git log`.
+- [ ] No `dist/`, `node_modules/`, or `data/` committed.
+- [ ] Branch is up to date with `main`, and the PR description links to these specs.
